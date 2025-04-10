@@ -1,20 +1,32 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import {StatusBar} from 'expo-status-bar';
+import {StyleSheet, SafeAreaView} from 'react-native';
+import UserCard from "./src/components/UserCard";
+import { SafeAreaView as SafeAreaViewContext} from 'react-native-safe-area-context';
+//ex4 Taska
 export default function App() {
+  const user = {
+    name: 'Rembo',
+    lastName: 'Last Blood'
+  }
+
+  const handleUserPress = () => {
+    alert('User Selected', `You selected ${user.name}`);
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <SafeAreaViewContext style={styles.container}>
+        <StatusBar barStyle="dark-content" backgroundColor="#f5f5f5" />
+        <UserCard onPress={handleUserPress} user={user} />
+      </SafeAreaViewContext>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#f5f5f5',
+
   },
 });
+
+
